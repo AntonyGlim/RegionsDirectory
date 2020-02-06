@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class Region {
+
+    private Long id;
     private int code;
     private String title;
     private String iso;
@@ -15,4 +17,5 @@ public class Region {
         this.title = title;
         this.iso = iso;
     }
+
 }
