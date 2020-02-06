@@ -5,6 +5,7 @@ import glim.antony.regions.directory.repositories.RegionMyBatisRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -29,18 +30,21 @@ public class RegionService {
         logger.info("Inserting -> {}", insert(new Region(3, "Республика Бурятия", "BU")));
     }
 
+    @Cacheable("regions")
     public List<Region> findAll(){
         List<Region> regions;
         logger.info("findAll -> {}", regions = regionRepository.findAll());
         return regions;
     }
 
+    @Cacheable("regionByCode")
     public Region findOneByCode(Integer code){
         Region region;
         logger.info("findOneByCode -> {}", region = regionRepository.findOneByCode(code));
         return region;
     }
 
+    @Cacheable("regionById")
     public Region findOneById(Long id) {
         Region region;
         logger.info("findOneById -> {}", region = regionRepository.findOneById(id));
